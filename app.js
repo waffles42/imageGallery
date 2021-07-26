@@ -1,5 +1,4 @@
 // document.getElementById("btn").addEventListener("click", fetchImages);
-document.getElementById("btn").addEventListener("click", getImages);
 
 //  function fetchImages(method, url, data) {
 //    const promise = new Promise((resolve, reject) => {
@@ -28,12 +27,16 @@ document.getElementById("btn").addEventListener("click", getImages);
 //
 //    return promise;
 //  }
+document.getElementById("btn").addEventListener("click", getImages);
 
 async function sendHttpRequest(method, url, data) {
   return fetch(url, {
     method: method,
     body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Client-ID GlxGxboGXijJhZZKPi-A76KH5XUkD1d3XHCwfGOmbKc",
+    },
   })
     .then((response) => {
       if (response.status >= 200 && response.status < 300) {
@@ -51,25 +54,51 @@ async function sendHttpRequest(method, url, data) {
     });
 }
 
+let loc = document.getElementById("imageList");
+
+function createDiv() {
+  var div = document.createElement("div");
+  div.style.width = "100px";
+  div.style.height = "100px";
+  div.style.background = "red";
+  div.style.color = "white";
+  div.innerHTML = "Hello";
+
+  loc.appendChild(div);
+}
+
+//request s autorizacijskim parametrom: "https://api.unsplash.com/search/photos?query=dogs&cliend_id=GlxGxboGXijJhZZKPi-A76KH5XUkD1d3XHCwfGOmbKc"
 async function getImages() {
   try {
     const responseData = await sendHttpRequest(
       "GET",
-      "https://api.unsplash.com/search/photos/dogs?query=dogs"
+      "https://api.unsplash.com/search/photos?query=dogs"
     );
-    console.log(responseData);
+    //console.log("Objekt responseData", responseData);
+    //console.log("Array resulta", responseData.results);
+    responseData.results.forEach((res) => console.log(res.urls.raw));
+    //console.log(responseData);
+    createDiv();
     return responseData;
   } catch (error) {
     alert(error.message);
   }
 }
 
+/* for (key in data) {
+  if (data.hasOwnProperty(key)) {
+    var value = data[key];
+    console.log(value);
+  }
+}
+console.log(data.urls); */
+
 // HTML ✓
 // CSS ✓
 // responsive design
-// establish connection with server
-// GET data
-// log image data as object in browser
+// establish connection with server ✓
+// GET data ✓
+// log image data as object in browser ✓
 // dynamically display data
 // replace BUTTON with INPUT_FIELD
 // enable any input
