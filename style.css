@@ -2,8 +2,9 @@
   width: 80%;
 }
 
+/*
 .inputField {
-}
+}*/
 
 .inputWrapper {
   border: lightgray;
@@ -18,8 +19,9 @@
   padding: 15px;
 }
 
+/*
 .inputTitle {
-}
+}*/
 
 .inputButton {
   color: red;
@@ -28,10 +30,23 @@
 
 .center {
   margin: auto;
+  display: block;
 }
 
 .imageList {
-  height: 100px;
+  min-height: 1px;
   background-color: whitesmoke;
   margin-top: 10px;
+}
+
+article {
+}
+
+div.images {
+  display: inline-flex;
+  padding-left: 15px;
+}
+
+img {
+  border-radius: 5%;
 }
