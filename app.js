@@ -26,11 +26,6 @@ async function sendHttpRequest(method, url, data) {
     });
 }
 
-//  <form>
-//      <input id="myInput" placeholder="Some text.." value="">
-//      <input type="submit" id="myBtn" value="Submit">
-//  </form>
-
 var input = document.getElementById("searchField");
 input.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
@@ -39,10 +34,13 @@ input.addEventListener("keyup", function (event) {
   }
 });
 
+function func() {
+  console.log("it werks");
+  document.getElementById("slike").setAttribute("attribute_on_click");
+}
 //request s autorizacijskim parametrom: "https://api.unsplash.com/search/photos?query=dogs&cliend_id=GlxGxboGXijJhZZKPi-A76KH5XUkD1d3XHCwfGOmbKc"
 async function getImages() {
   try {
-    //dobije input iz polja, no aktivira se samo na pritisak gumba
     const userInput = document.getElementById("searchField").value;
     console.log(userInput);
 
@@ -50,12 +48,9 @@ async function getImages() {
     const url = `https://api.unsplash.com/search/photos?query=${userInput}`;
     const responseData = await sendHttpRequest(method, url);
 
-    //console.log("Objekt responseData", responseData);
-    //console.log("Array resulta", responseData.results);
     responseData.results.forEach((res) => {
-      //console.log(res.urls.raw);
       const method = "afterend";
-      const url = `<div class="images"><img src="${res.urls.thumb}"/></div>`;
+      const url = `<div class="images" onclick="func()"><img  class="slike" src="${res.urls.small}"/></div>`;
       article.insertAdjacentHTML(method, url);
     });
 

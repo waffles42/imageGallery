@@ -56,4 +56,12 @@ div.images {
 
 img {
   border-radius: 5%;
+  transition: 0.5s;
+  max-width: 230px;
+}
+.attribute_on_click {
+  width: 1000px;
+}
+img:hover {
+  transform: scale(1.5);
 }
